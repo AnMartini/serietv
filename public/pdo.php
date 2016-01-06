@@ -1,5 +1,5 @@
 <?php
-use Dotenv\Dotenv;
+require_once("/home/forge/serietv.anmartini.it/vendor/vlucas/phpdotenv/src/Dotenv.php");
 // Production error reporting
 //error_reporting(0);
 // Costanti
