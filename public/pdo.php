@@ -1,5 +1,5 @@
 <?php
-require_once("../env.php");
+require_once(__DIR__."../env.php");
 // Production error reporting
 error_reporting(0);
 // Costanti
