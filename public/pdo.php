@@ -1,4 +1,5 @@
 <?php
+require_once("/home/forge/serietv.anmartini.it/vendor/vlucas/phpdotenv/src/Loader.php");
 require_once("/home/forge/serietv.anmartini.it/vendor/vlucas/phpdotenv/src/Dotenv.php");
 // Production error reporting
 //error_reporting(0);
