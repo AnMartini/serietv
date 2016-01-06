@@ -1,13 +1,15 @@
 <?php
+// Production error reporting
+error_reporting(0);
 // Costanti
 date_default_timezone_set('Europe/Rome');
 setlocale(LC_TIME, 'ita', 'it_IT.UTF-8', 'it', 'it_IT.utf8', 'it_IT');
 // Parametri connessione
-$host = $ENV['DB_HOST'];
-$dbname = $ENV['DB_DATABASE'];
-$charset = $ENV['DB_CHARSET'];
-$user = $ENV['DB_USERNAME'];
-$password = $ENV['DB_PASSWORD'];
+$host = $_ENV['DB_HOST'];
+$dbname = $_ENV['DB_DATABASE'];
+$charset = $_ENV['DB_CHARSET'];
+$user = $_ENV['DB_USERNAME'];
+$password = $_ENV['DB_PASSWORD'];
 // Connetto al database
 try {
   $db = new PDO("mysql:host=$host;dbname=$dbname;charset=$charset", $user, $password);
