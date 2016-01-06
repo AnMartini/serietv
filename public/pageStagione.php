@@ -37,7 +37,7 @@ $video = array();
 $audio = array();
 $sottotitoli = array();
 $storage = array();
-$sql = $db->prepare("SELECT * FROM episodi WHERE stagione = '".$stagione['id']."' ORDER BY numero ASC");
+$sql = $db->prepare("SELECT * FROM episodi WHERE stagione = '".$stagione['id']."' ORDER BY CAST(numero AS UNSIGNED) ASC");
 $sql->execute();
 $stagione['episodi'] = $sql->rowCount();
 $gliEpisodi = $sql->fetchAll();
