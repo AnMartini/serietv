@@ -1,6 +1,6 @@
 <?php
 // Production error reporting
-error_reporting(0);
+//error_reporting(0);
 // Costanti
 date_default_timezone_set('Europe/Rome');
 setlocale(LC_TIME, 'ita', 'it_IT.UTF-8', 'it', 'it_IT.utf8', 'it_IT');
