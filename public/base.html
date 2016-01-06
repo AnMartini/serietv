@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="#DESCRIZIONE">
+		<meta name="author" content="Andrea Martini">
+		
+		<title>#TITOLO</title>
+		
+		<!-- Dati per i social -->
+		<meta property="og:title" content="#TITOLO"/>
+		<meta property="og:url" content="#URL"/>
+		<meta property="og:image" content="#IMMAGINE EPISODIO"/>
+		<meta property="og:site_name" content="AnMartini.it"/>
+		<meta property="fb:admins" content="1494108829"/>
+		<meta property="og:description" content="#DESCRIZIONE"/>
+		
+		<!-- Fogli di stile -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style.css">
+		<!-- Supporto per Internet Explorer 8 -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-inverse navbar-static-top">
+		  <div class="container-fluid">
+		    <!-- Brand -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Apri/Chiudi</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> SerieTv</a>
+		    </div>
+		
+		    <!-- Links -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Serie <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">#SERIE 1</a></li>
+		            <li class="active"><a href="#">#SERIE 2</a></li>
+		          </ul>
+		        </li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stagioni <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">#STAGIONE 1</a></li>
+		            <li class="active"><a href="#">#STAGIONE 2</a></li>
+		          </ul>
+		        </li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodi <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">#EPISODIO 1</a></li>
+		            <li class="active"><a href="#">#EPISODIO 2</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="http://anmartini.it">AnMartini.it</a></li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<div class="container">
+			<h1>#TITOLO EPISODIO <span class="label label-success pull-right">Visto</span> <span class="label label-danger pull-right">Da vedere</span></h1>
+			<ol class="breadcrumb">
+			  <li><a href="#">#SERIE</a></li>
+			  <li><a href="#">#STAGIONE</a></li>
+			  <li class="active">#EPISODIO</li>
+			</ol>
+			<div class="row">
+				<div class="col-sm-5 col-xs-12">
+					<img src="test.jpg" alt="Immagine dell'episodio" class="img-responsive img-thumbnail" />
+				</div>
+				<div class="col-sm-7 col-xs-12">
+					<dl class="dl-horizontal dl-serietv">
+						<dt>ID</dt>
+						<dd>#ID EPISODIO (CW S1 E1)</dd>
+						<dt>Titolo</dt>
+						<dd>#TITOLO EPISODIO</dd>
+						<dt>Video</dt>
+						<dd>#VIDEO</dd>
+						<dt>Audio</dt>
+						<dd>#AUDIO</dd>
+						<dt>Sottotitoli</dt>
+						<dd>#SOTTOTITOLI</dd>
+						<dt>Disco</dt>
+						<dd>#STORAGE</dd>
+						<dt>Voto</dt>
+						<dd class="stars"><span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star-empty"></span> <span class="glyphicon glyphicon-star-empty"></span> <span class="glyphicon glyphicon-star-empty"></span></dd>
+						<dt>Visto il</dt>
+						<dd>#DATA</dd>
+					</dl>
+				</div>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="panel-group" id="panels" role="tablist" aria-multiselectable="true">
+					  <div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingModifica">
+					      <h4 class="panel-title">
+					        <a role="button" data-toggle="collapse" data-parent="#panels" href="#panelModifica" aria-expanded="true" aria-controls="collapseOne">
+					          Modifica Episodio
+					        </a>
+					      </h4>
+					    </div>
+					    <div id="panelModifica" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingModifica">
+					      <div class="panel-body">
+					        <form>
+					          <div class="form-group">
+					            <label for="formTitolo">Titolo</label>
+					            <input type="text" class="form-control" id="formTitolo" placeholder="Titolo" value="#TITOLO EPISODIO">
+					          </div>
+					          <div class="form-group">
+					            <label for="formVideo">Video</label>
+					            <select class="form-control" id="formVideo">
+					            	<option disabled selected>Scegli...</option>
+					            	<option>OPZIONE 1</option>
+					            </select>
+					          </div>
+					          <div class="form-group">
+					            <label for="formAudio">Audio</label>
+					            <select class="form-control" id="formAudio">
+					            	<option disabled selected>Scegli...</option>
+					            	<option>OPZIONE 1</option>
+					            </select>
+					          </div>
+					          <div class="form-group">
+					            <label for="formSottotitoli">Sottotitoli</label>
+					            <select class="form-control" id="formSottotitoli">
+					            	<option disabled selected>Scegli...</option>
+					            	<option>OPZIONE 1</option>
+					            </select>
+					          </div>
+					          <div class="form-group">
+					            <label for="formStorage">Disco</label>
+					            <select class="form-control" id="formStorage">
+					            	<option disabled selected>Scegli...</option>
+					            	<option>OPZIONE 1</option>
+					            </select>
+					          </div>
+					          <div class="form-group">
+					            <label for="formVoto">Voto</label>
+					            <select class="form-control" id="formVoto">
+					            	<option disabled selected>Scegli...</option>
+					            	<option value="1">1</option>
+					            	<option value="2">2</option>
+					            	<option value="3">3</option>
+					            	<option value="4">4</option>
+					            	<option value="5">5</option>
+					            </select>
+					          </div>
+					          <div class="checkbox">
+					            <label>
+					              <input type="checkbox" id="formVisto" checked> Visto
+					            </label>
+					          </div>
+					          <button type="button" class="btn btn-default">Salva</button>
+					        </form>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script>
+		$(document).ready(function() {
+			
+		});
+		</script>
+	</body>
+</html>
