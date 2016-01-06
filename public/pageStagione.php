@@ -41,7 +41,6 @@ $sql = $db->prepare("SELECT * FROM episodi WHERE stagione = '".$stagione['id']."
 $sql->execute();
 $stagione['episodi'] = $sql->rowCount();
 $gliEpisodi = $sql->fetchAll();
-print_r($gliEpisodi);
 $stagione['nextENumero'] = 1;
 foreach ($gliEpisodi as $num => $lEpisodio) {
 	if ($lEpisodio['voto'] != 0 && $lEpisodio['voto'] != NULL) {
@@ -270,6 +269,7 @@ if ($hasPre | $hasNext) {
 		<![endif]-->
 	</head>
 	<body>
+	<?= print_r($gliEpisodi); ?>
 		<!-- Navbar -->
 		<nav class="navbar navbar-inverse navbar-static-top">
 		  <div class="container-fluid">
