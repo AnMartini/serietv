@@ -81,15 +81,15 @@ if ($episodiConVoto != 0) {
 	$stagione['voto'] = 0;
 }
 if ($stagione['voto'] == 0) {
-	$stagione['stelle'] = '<span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span>';
+	$stagione['stelle'] = '<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';
 } else {
 	$stelleVuote = 5 - $stagione['voto'];
 	$stagione['stelle'] = '';
 	for ($i = 0; $i < $stagione['voto']; $i++) {
-		$stagione['stelle'] .= '<span class="glyphicon glyphicon-star"></span>';
+		$stagione['stelle'] .= '<i class="fa fa-star"></i>';
 	}
 	for ($i = 0; $i < $stelleVuote; $i++) {
-		$stagione['stelle'] .= '<span class="glyphicon glyphicon-star-empty"></span>';
+		$stagione['stelle'] .= '<i class="fa fa-star-o"></i>';
 	}
 }
 $stagione['statoLabel'] = '<span class="label label-default pull-right">ND</span>';
@@ -229,10 +229,10 @@ $stagione['nav'] = '';
 if ($hasPre | $hasNext) {
 	$stagione['nav'] .= '<div class="btn-group pull-right">';
 	if ($hasPre) {
-		$stagione['nav'] .= '<a href="'.$pre['url'].'" class="btn btn-default btn-xs" title="Vai alla stagione precedente"><span class="glyphicon glyphicon-chevron-left"></span> '.$pre['show'].'</a>';
+		$stagione['nav'] .= '<a href="'.$pre['url'].'" class="btn btn-default btn-xs" title="Vai alla stagione precedente"><i class="fa fa-chevron-left"></i> '.$pre['show'].'</a>';
 	}
 	if ($hasNext) {
-		$stagione['nav'] .= '<a href="'.$next['url'].'" class="btn btn-default btn-xs" title="Vai alla stagione successiva">'.$next['show'].' <span class="glyphicon glyphicon-chevron-right"></span></a>';
+		$stagione['nav'] .= '<a href="'.$next['url'].'" class="btn btn-default btn-xs" title="Vai alla stagione successiva">'.$next['show'].' <i class="fa fa-chevron-right"></i></a>';
 	}
 	$stagione['nav'] .= '</div>';
 }
@@ -250,14 +250,15 @@ if ($hasPre | $hasNext) {
 		
 		<!-- Dati per i social -->
 		<meta property="og:title" content="<?php echo $serie['nome']; ?> <?php echo $stagione['nome']; ?> | SerieTv"/>
-		<meta property="og:url" content="http://serietv.anmartini.it/s/<?php echo $serie['slug']; ?>/s<?php echo $stagione['numero']; ?>"/>
-		<meta property="og:image" content="http://serietv.anmartini.it/<?php echo $stagione['imgPath']; ?>"/>
+		<meta property="og:url" content="https://serietv.anmartini.it/s/<?php echo $serie['slug']; ?>/s<?php echo $stagione['numero']; ?>"/>
+		<meta property="og:image" content="https://serietv.anmartini.it/<?php echo $stagione['imgPath']; ?>"/>
 		<meta property="og:site_name" content="SerieTv | AnMartini"/>
 		<meta property="fb:admins" content="1494108829"/>
 		<meta property="og:description" content="<?php echo $serie['nome']; ?>, <?php echo $stagione['nome']; ?>. Riepilogo su SerieTv | AnMartini"/>
 		
 		<!-- Fogli di stile -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
 		<link rel="stylesheet" href="/style.css">
 		<?php if (abilitato()) { ?>
 		<link rel="stylesheet" href="/jquery.datetimepicker.css">
@@ -280,7 +281,7 @@ if ($hasPre | $hasNext) {
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> SerieTv</a>
+		      <a class="navbar-brand" href="/"><i class="fa fa-television"></i> SerieTv</a>
 		    </div>
 		
 		    <!-- Links -->
@@ -330,7 +331,7 @@ if ($hasPre | $hasNext) {
 		        </li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="http://anmartini.it">AnMartini</a></li>
+		        <li><a href="https://anmartini.it">AnMartini</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -381,7 +382,7 @@ if ($hasPre | $hasNext) {
 					<ul class="list-unstyled">
 						<?php
 						foreach ($gliEpisodi as $lEpisodio) {
-							echo '<li class="elementoLU">'.($lEpisodio['visto'] ? '<span class="label label-success pull-right">Visto</span>' : ($serie['abbandonata'] ? '<span class="label label-danger pull-right">Non visto</span>' : '<span class="label label-default pull-right">Da vedere</span>')).'<a href="/s/'.$serie['slug'].'/s'.$stagione['numero'].'/e'.$lEpisodio['numero'].'" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-arrow-right"></span></a> #'.$lEpisodio['numero'].' - '.$lEpisodio['titolo'].'</li>';
+							echo '<li class="elementoLU">'.($lEpisodio['visto'] ? '<span class="label label-success pull-right">Visto</span>' : ($serie['abbandonata'] ? '<span class="label label-danger pull-right">Non visto</span>' : '<span class="label label-default pull-right">Da vedere</span>')).'<a href="/s/'.$serie['slug'].'/s'.$stagione['numero'].'/e'.$lEpisodio['numero'].'" class="btn btn-default btn-xs"><i class="fa fa-arrow-right"></i></a> #'.$lEpisodio['numero'].' - '.$lEpisodio['titolo'].'</li>';
 						}
 						?>
 					</ul>
@@ -579,7 +580,7 @@ if ($hasPre | $hasNext) {
 		</div>
 		<!-- Script -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<?php if (abilitato()) { ?>
 		<script src="/jquery.datetimepicker.js"></script>
 		<script>

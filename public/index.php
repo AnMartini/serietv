@@ -32,14 +32,15 @@ $stats['stagioni'] = $sql->rowCount();
 		
 		<!-- Dati per i social -->
 		<meta property="og:title" content="SerieTv | AnMartini"/>
-		<meta property="og:url" content="http://serietv.anmartini.it"/>
-		<meta property="og:image" content="http://serietv.anmartini.it/img/logo.jpg"/>
+		<meta property="og:url" content="https://serietv.anmartini.it"/>
+		<meta property="og:image" content="https://serietv.anmartini.it/img/logo.jpg"/>
 		<meta property="og:site_name" content="SerieTv | AnMartini"/>
 		<meta property="fb:admins" content="1494108829"/>
 		<meta property="og:description" content="SerieTv | AnMartini | Stato di visione e informazioni sulle serie tv di AnMartini."/>
 		
 		<!-- Fogli di stile -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
 		<link rel="stylesheet" href="/style.css">
 		<!-- Supporto per Internet Explorer 8 -->
 		<!--[if lt IE 9]>
@@ -59,7 +60,7 @@ $stats['stagioni'] = $sql->rowCount();
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> SerieTv</a>
+		      <a class="navbar-brand" href="/"><i class="fa fa-television"></i> SerieTv</a>
 		    </div>
 		
 		    <!-- Links -->
@@ -80,7 +81,7 @@ $stats['stagioni'] = $sql->rowCount();
 		        </li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="http://anmartini.it">AnMartini</a></li>
+		        <li><a href="https://anmartini.it">AnMartini</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -147,7 +148,7 @@ $stats['stagioni'] = $sql->rowCount();
 									$laSerie['statoLabel'] = '<span class="label label-warning pull-right">In corso</span>';
 								}
 							}
-							echo '<li class="elementoLU">'.$laSerie['statoLabel'].'<a href="/s/'.$laSerie['slug'].'" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-arrow-right"></span></a> '.$laSerie['nome'].'</li>';
+							echo '<li class="elementoLU">'.$laSerie['statoLabel'].'<a href="/s/'.$laSerie['slug'].'" class="btn btn-default btn-xs"><i class="fa fa-arrow-right"></i></a> '.$laSerie['nome'].'</li>';
 						}
 						?>
 					</ul>
@@ -225,7 +226,7 @@ $stats['stagioni'] = $sql->rowCount();
 		</div>
 		<!-- Script -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<?php if (abilitato()) { ?>
 		<script>
 		$(document).ready(function() {

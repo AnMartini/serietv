@@ -39,15 +39,15 @@ if (!$episodio['visto']) {
 	$episodio['visione'] = date('l j F Y, G:i', $episodio['data']);
 }
 if ($episodio['voto'] == NULL || $episodio['voto'] == 0) {
-	$episodio['stelle'] = '<span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span>';
+	$episodio['stelle'] = '<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';
 } else {
 	$stelleVuote = 5 - $episodio['voto'];
 	$episodio['stelle'] = '';
 	for ($i = 0; $i < $episodio['voto']; $i++) {
-		$episodio['stelle'] .= '<span class="glyphicon glyphicon-star"></span>';
+		$episodio['stelle'] .= '<i class="fa fa-star"></i>';
 	}
 	for ($i = 0; $i < $stelleVuote; $i++) {
-		$episodio['stelle'] .= '<span class="glyphicon glyphicon-star-empty"></span>';
+		$episodio['stelle'] .= '<i class="fa fa-star-o"></i>';
 	}
 }
 if ($episodio['video'] == NULL) {
@@ -115,10 +115,10 @@ $episodio['nav'] = '';
 if ($hasPre | $hasNext) {
 	$episodio['nav'] .= '<div class="btn-group pull-right">';
 	if ($hasPre) {
-		$episodio['nav'] .= '<a href="'.$pre['url'].'" class="btn btn-default btn-xs" title="Vai all\'episodio precedente"><span class="glyphicon glyphicon-chevron-left"></span> '.$pre['show'].'</a>';
+		$episodio['nav'] .= '<a href="'.$pre['url'].'" class="btn btn-default btn-xs" title="Vai all\'episodio precedente"><i class="fa fa-chevron-left"></i> '.$pre['show'].'</a>';
 	}
 	if ($hasNext) {
-		$episodio['nav'] .= '<a href="'.$next['url'].'" class="btn btn-default btn-xs" title="Vai all\'episodio successivo">'.$next['show'].' <span class="glyphicon glyphicon-chevron-right"></span></a>';
+		$episodio['nav'] .= '<a href="'.$next['url'].'" class="btn btn-default btn-xs" title="Vai all\'episodio successivo">'.$next['show'].' <i class="fa fa-chevron-right"></i></a>';
 	}
 	$episodio['nav'] .= '</div>';
 }
@@ -136,14 +136,15 @@ if ($hasPre | $hasNext) {
 		
 		<!-- Dati per i social -->
 		<meta property="og:title" content="<?php echo $serie['nome']; ?> S<?php echo $stagione['numero']; ?> E<?php echo $episodio['numero']; ?> | SerieTv"/>
-		<meta property="og:url" content="http://serietv.anmartini.it/s/<?php echo $serie['slug']; ?>/s<?php echo $stagione['numero']; ?>/e<?php echo $episodio['numero']; ?>"/>
-		<meta property="og:image" content="http://serietv.anmartini.it/<?php echo $episodio['imgPath']; ?>"/>
+		<meta property="og:url" content="https://serietv.anmartini.it/s/<?php echo $serie['slug']; ?>/s<?php echo $stagione['numero']; ?>/e<?php echo $episodio['numero']; ?>"/>
+		<meta property="og:image" content="https://serietv.anmartini.it/<?php echo $episodio['imgPath']; ?>"/>
 		<meta property="og:site_name" content="SerieTv | AnMartini"/>
 		<meta property="fb:admins" content="1494108829"/>
 		<meta property="og:description" content="<?php echo $serie['nome']; ?> S<?php echo $stagione['numero']; ?> E<?php echo $episodio['numero']; ?>: <?php echo $episodio['titolo']; ?>. Riepilogo su SerieTv | AnMartini"/>
 		
 		<!-- Fogli di stile -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
 		<link rel="stylesheet" href="/style.css">
 		<?php if (abilitato()) { ?>
 		<link rel="stylesheet" href="/jquery.datetimepicker.css">
@@ -166,7 +167,7 @@ if ($hasPre | $hasNext) {
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> SerieTv</a>
+		      <a class="navbar-brand" href="/"><i class="fa fa-television"></i> SerieTv</a>
 		    </div>
 		
 		    <!-- Links -->
@@ -216,7 +217,7 @@ if ($hasPre | $hasNext) {
 		        </li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="http://anmartini.it">AnMartini</a></li>
+		        <li><a href="https://anmartini.it">AnMartini</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -408,7 +409,7 @@ if ($hasPre | $hasNext) {
 		</div>
 		<!-- Script -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<?php if (abilitato()) { ?>
 		<script src="/jquery.datetimepicker.js"></script>
 		<script>

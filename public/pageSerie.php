@@ -85,15 +85,15 @@ if ($episodiConVoto != 0) {
 	$serie['voto'] = 0;
 }
 if ($serie['voto'] == 0) {
-	$serie['stelle'] = '<span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span>';
+	$serie['stelle'] = '<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';
 } else {
 	$stelleVuote = 5 - $serie['voto'];
 	$serie['stelle'] = '';
 	for ($i = 0; $i < $serie['voto']; $i++) {
-		$serie['stelle'] .= '<span class="glyphicon glyphicon-star"></span>';
+		$serie['stelle'] .= '<i class="fa fa-star"></i>';
 	}
 	for ($i = 0; $i < $stelleVuote; $i++) {
-		$serie['stelle'] .= '<span class="glyphicon glyphicon-star-empty"></span>';
+		$serie['stelle'] .= '<i class="fa fa-star-o"></i>';
 	}
 }
 $serie['statoLabel'] = '<span class="label label-default pull-right">ND</span>';
@@ -202,14 +202,15 @@ if ($sql->rowCount() == 1) {
 		
 		<!-- Dati per i social -->
 		<meta property="og:title" content="<?php echo $serie['nome']; ?> | SerieTv"/>
-		<meta property="og:url" content="http://serietv.anmartini.it/s/<?php echo $serie['slug']; ?>"/>
-		<meta property="og:image" content="http://serietv.anmartini.it/<?php echo $serie['imgPath']; ?>"/>
+		<meta property="og:url" content="https://serietv.anmartini.it/s/<?php echo $serie['slug']; ?>"/>
+		<meta property="og:image" content="https://serietv.anmartini.it/<?php echo $serie['imgPath']; ?>"/>
 		<meta property="og:site_name" content="SerieTv | AnMartini"/>
 		<meta property="fb:admins" content="1494108829"/>
 		<meta property="og:description" content="<?php echo $serie['nome']; ?>. Riepilogo su SerieTv | AnMartini"/>
 		
 		<!-- Fogli di stile -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
 		<link rel="stylesheet" href="/style.css">
 		<!-- Supporto per Internet Explorer 8 -->
 		<!--[if lt IE 9]>
@@ -229,7 +230,7 @@ if ($sql->rowCount() == 1) {
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> SerieTv</a>
+		      <a class="navbar-brand" href="/"><i class="fa fa-television"></i> SerieTv</a>
 		    </div>
 		
 		    <!-- Links -->
@@ -266,7 +267,7 @@ if ($sql->rowCount() == 1) {
 		        </li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="http://anmartini.it">AnMartini</a></li>
+		        <li><a href="https://anmartini.it">AnMartini</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -350,7 +351,7 @@ if ($sql->rowCount() == 1) {
 									$laStagione['statoLabel'] = '<span class="label label-warning pull-right">In corso</span>';
 								}
 							}
-							echo '<li class="elementoLU">'.$laStagione['statoLabel'].'<a href="/s/'.$serie['slug'].'/s'.$laStagione['numero'].'" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-arrow-right"></span></a> '.$laStagione['nome'].'</li>';
+							echo '<li class="elementoLU">'.$laStagione['statoLabel'].'<a href="/s/'.$serie['slug'].'/s'.$laStagione['numero'].'" class="btn btn-default btn-xs"><i class="fa fa-arrow-right"></i></a> '.$laStagione['nome'].'</li>';
 						}
 						?>
 					</ul>
@@ -493,7 +494,7 @@ if ($sql->rowCount() == 1) {
 		</div>
 		<!-- Script -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<?php if (abilitato()) { ?>
 		<script>
 		$(document).ready(function() {
