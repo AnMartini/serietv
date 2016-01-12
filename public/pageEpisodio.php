@@ -211,7 +211,7 @@ if ($hasPre | $hasNext) {
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodi <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <?php
-		            $sql = $db->prepare("SELECT * FROM episodi WHERE stagione = '".$stagione['id']."' ORDER BY numero ASC");
+		            $sql = $db->prepare("SELECT * FROM episodi WHERE stagione = '".$stagione['id']."' ORDER BY numero * 1 ASC, numero ASC");
 		            $sql->execute();
 		            $gliEpisodi = $sql->fetchAll();
 		            foreach ($gliEpisodi as $lEpisodio) {
