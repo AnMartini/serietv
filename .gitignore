@@ -1,4 +1,5 @@
 .DS_Store
+.htaccess
 public/old/
 env.php
 /public/pwdserietv.php

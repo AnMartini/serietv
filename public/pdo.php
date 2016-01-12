@@ -11,6 +11,7 @@ $dbname = $ENV['DB_DATABASE'];
 $charset = $ENV['DB_CHARSET'];
 $user = $ENV['DB_USERNAME'];
 $password = $ENV['DB_PASSWORD'];
+$hash = $ENV['HASH'];
 // Connetto al database
 try {
   $db = new PDO("mysql:host=$host;dbname=$dbname;charset=$charset", $user, $password);
@@ -19,7 +20,7 @@ try {
   //salvaerrore($e->getMessage());
 }
 function abilitato() {
-	$hash = sha1($ENV['TOKEN']);
+	global $hash;
 	if (isset($_COOKIE['token'])) {
 		$token = $_COOKIE['token'];
 		if ($hash != $token) {
@@ -32,7 +33,7 @@ function abilitato() {
 	}
 }
 function riservata() {
-	$hash = sha1($ENV['TOKEN']);
+	global $hash;
 	if (isset($_COOKIE['token'])) {
 		$token = $_COOKIE['token'];
 		if ($hash != $token) {
