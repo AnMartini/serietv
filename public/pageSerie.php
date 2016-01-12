@@ -118,12 +118,12 @@ if ($serie['abbandonata']) {
 		if ($serie['inizio'] == NULL) {
 			$serie['visione'] = 'nd - ';
 		} else {
-			$serie['visione'] = date('l j F Y, G:i', $serie['inizio']).' - ';
+			$serie['visione'] = strftime('%A %e %B %Y, %k:%M', $serie['inizio']).' - ';
 		}
 		if ($serie['fine'] == NULL) {
 			$serie['visione'] .= 'nd';
 		} else {
-			$serie['visione'] .= date('l j F Y, G:i', $serie['fine']);
+			$serie['visione'] .= strftime('%A %e %B %Y, %k:%M', $serie['fine']);
 		}
 	} else {
 		$serie['stato'] = 2;
@@ -131,7 +131,7 @@ if ($serie['abbandonata']) {
 		if ($serie['inizio'] == NULL) {
 			$serie['visione'] = 'nd - in corso';
 		} else {
-			$serie['visione'] = date('l j F Y, G:i', $serie['inizio']).' - in corso';
+			$serie['visione'] = strftime('%A %e %B %Y, %k:%M', $serie['inizio']).' - in corso';
 		}
 	}
 }

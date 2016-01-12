@@ -112,12 +112,12 @@ if ($episodiVisti == 0) {
 		if ($stagione['inizio'] == NULL) {
 			$stagione['visione'] = 'nd - ';
 		} else {
-			$stagione['visione'] = date('l j F Y, G:i', $stagione['inizio']).' - ';
+			$stagione['visione'] = strftime('%A %e %B %Y, %k:%M', $stagione['inizio']).' - ';
 		}
 		if ($stagione['fine'] == NULL) {
 			$stagione['visione'] .= 'nd';
 		} else {
-			$stagione['visione'] .= date('l j F Y, G:i', $stagione['fine']);
+			$stagione['visione'] .= strftime('%A %e %B %Y, %k:%M', $stagione['fine']);
 		}
 	} else {
 		$stagione['stato'] = 3;
@@ -125,12 +125,12 @@ if ($episodiVisti == 0) {
 		if ($stagione['inizio'] == NULL) {
 			$stagione['visione'] = 'nd - ';
 		} else {
-			$stagione['visione'] = date('l j F Y, G:i', $stagione['inizio']).' - ';
+			$stagione['visione'] = strftime('%A %e %B %Y, %k:%M', $stagione['inizio']).' - ';
 		}
 		if ($stagione['fine'] == NULL) {
 			$stagione['visione'] .= 'nd';
 		} else {
-			$stagione['visione'] .= date('l j F Y, G:i', $stagione['fine']);
+			$stagione['visione'] .= strftime('%A %e %B %Y, %k:%M', $stagione['fine']);
 		}
 	}
 } else {
@@ -140,7 +140,7 @@ if ($episodiVisti == 0) {
 		if ($stagione['inizio'] == NULL) {
 			$stagione['visione'] = 'nd - abbandonata';
 		} else {
-			$stagione['visione'] = date('l j F Y, G:i', $stagione['inizio']).' - abbandonata';
+			$stagione['visione'] = strftime('%A %e %B %Y, %k:%M', $stagione['inizio']).' - abbandonata';
 		}
 	} else {
 		$stagione['stato'] = 2;
@@ -148,7 +148,7 @@ if ($episodiVisti == 0) {
 		if ($stagione['inizio'] == NULL) {
 			$stagione['visione'] = 'nd - in corso';
 		} else {
-			$stagione['visione'] = date('l j F Y, G:i', $stagione['inizio']).' - in corso';
+			$stagione['visione'] = strftime('%A %e %B %Y, %k:%M', $stagione['inizio']).' - in corso';
 		}
 	}
 }

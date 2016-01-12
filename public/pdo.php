@@ -4,7 +4,7 @@ require_once(__DIR__."/../env.php");
 error_reporting(0);
 // Costanti
 date_default_timezone_set('Europe/Rome');
-setlocale(LC_TIME, 'ita', 'it_IT.UTF-8', 'it', 'it_IT.utf8', 'it_IT');
+setlocale(LC_TIME, 'it_IT.utf8', 'it_IT');
 // Parametri connessione
 $host = $ENV['DB_HOST'];
 $dbname = $ENV['DB_DATABASE'];
@@ -19,7 +19,7 @@ try {
   //salvaerrore($e->getMessage());
 }
 function abilitato() {
-	$hash = sha1("pwdserietv");
+	$hash = sha1($ENV['TOKEN']);
 	if (isset($_COOKIE['token'])) {
 		$token = $_COOKIE['token'];
 		if ($hash != $token) {
@@ -32,7 +32,7 @@ function abilitato() {
 	}
 }
 function riservata() {
-	$hash = sha1("pwdserietv");
+	$hash = sha1($ENV['TOKEN']);
 	if (isset($_COOKIE['token'])) {
 		$token = $_COOKIE['token'];
 		if ($hash != $token) {

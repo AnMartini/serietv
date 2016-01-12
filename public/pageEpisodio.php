@@ -36,7 +36,7 @@ if (!$episodio['visto']) {
 } elseif ($episodio['data'] == NULL) {
 	$episodio['visione'] = 'nd';
 } else {
-	$episodio['visione'] = date('l j F Y, G:i', $episodio['data']);
+	$episodio['visione'] = strftime('%A %e %B %Y, %k:%M', $episodio['data']);
 }
 if ($episodio['voto'] == NULL) {
 	$episodio['voto'] == 0;
