@@ -38,17 +38,22 @@ if (!$episodio['visto']) {
 } else {
 	$episodio['visione'] = date('l j F Y, G:i', $episodio['data']);
 }
-if ($episodio['voto'] == NULL || $episodio['voto'] == 0) {
-	$episodio['stelle'] = '<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';
-} else {
-	$stelleVuote = 5 - $episodio['voto'];
-	$episodio['stelle'] = '';
-	for ($i = 0; $i < $episodio['voto']; $i++) {
-		$episodio['stelle'] .= '<i class="fa fa-star"></i>';
-	}
-	for ($i = 0; $i < $stelleVuote; $i++) {
-		$episodio['stelle'] .= '<i class="fa fa-star-o"></i>';
-	}
+if ($episodio['voto'] == NULL) {
+	$episodio['voto'] == 0;
+}
+$partiVoto = explode(".", $episodio['voto']);
+$stelleIntere = $partiVoto[0];
+$stelleDecimali = $partiVoto[1];
+for ($i = 0; $i < $stelleIntere; $i++) {
+	$episodio['stelle'] .= '<i class="fa fa-star"></i>';
+}
+if ($stelleDecimali >= 5) {
+	$episodio['stelle'] .= '<i class="fa fa-star-half-o"></i>';
+	$stelleIntere++;
+}
+$stelleRimanenti = 5 - $stelleIntere;
+for ($i = 0; $i < $stelleRimanenti; $i++) {
+	$episodio['stelle'] .= '<i class="fa fa-star-o"></i>';
 }
 if ($episodio['video'] == NULL) {
 	$episodio['sVideo'] = 'nd';
@@ -357,7 +362,7 @@ if ($hasPre | $hasNext) {
 					            <select class="form-control" id="formVoto">
 					            	<option value="0"<?php echo ($episodio['voto'] == NULL || $episodio['voto'] == 0 ? ' selected' : ''); ?>>Scegli...</option>
 					            	<?php
-					            	for ($i = 1; $i <= 5; $i++) {
+					            	for ($i = 0.5; $i <= 5; $i += 0.5) {
 					            		echo '<option value="'.$i.'"'.($episodio['voto'] == $i ? ' selected' : '').'>'.$i.'</option>';
 					            	}
 					            	?>

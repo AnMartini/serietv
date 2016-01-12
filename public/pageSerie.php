@@ -80,21 +80,23 @@ $audio = array_unique($audio, SORT_REGULAR);
 $sottotitoli = array_unique($sottotitoli, SORT_REGULAR);
 $storage = array_unique($storage, SORT_REGULAR);
 if ($episodiConVoto != 0) {
-	$serie['voto'] = round($totaleVoti / $episodiConVoto);
+	$serie['voto'] = round($totaleVoti / $episodiConVoto, 1);
 } else {
 	$serie['voto'] = 0;
 }
-if ($serie['voto'] == 0) {
-	$serie['stelle'] = '<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';
-} else {
-	$stelleVuote = 5 - $serie['voto'];
-	$serie['stelle'] = '';
-	for ($i = 0; $i < $serie['voto']; $i++) {
-		$serie['stelle'] .= '<i class="fa fa-star"></i>';
-	}
-	for ($i = 0; $i < $stelleVuote; $i++) {
-		$serie['stelle'] .= '<i class="fa fa-star-o"></i>';
-	}
+$partiVoto = explode(".", $serie['voto']);
+$stelleIntere = $partiVoto[0];
+$stelleDecimali = $partiVoto[1];
+for ($i = 0; $i < $stelleIntere; $i++) {
+	$serie['stelle'] .= '<i class="fa fa-star"></i>';
+}
+if ($stelleDecimali >= 5) {
+	$serie['stelle'] .= '<i class="fa fa-star-half-o"></i>';
+	$stelleIntere++;
+}
+$stelleRimanenti = 5 - $stelleIntere;
+for ($i = 0; $i < $stelleRimanenti; $i++) {
+	$serie['stelle'] .= '<i class="fa fa-star-o"></i>';
 }
 $serie['statoLabel'] = '<span class="label label-default pull-right">ND</span>';
 if ($serie['abbandonata']) {

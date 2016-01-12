@@ -76,21 +76,23 @@ $audio = array_unique($audio, SORT_REGULAR);
 $sottotitoli = array_unique($sottotitoli, SORT_REGULAR);
 $storage = array_unique($storage, SORT_REGULAR);
 if ($episodiConVoto != 0) {
-	$stagione['voto'] = round($totaleVoti / $episodiConVoto);
+	$stagione['voto'] = round($totaleVoti / $episodiConVoto, 1);
 } else {
 	$stagione['voto'] = 0;
 }
-if ($stagione['voto'] == 0) {
-	$stagione['stelle'] = '<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';
-} else {
-	$stelleVuote = 5 - $stagione['voto'];
-	$stagione['stelle'] = '';
-	for ($i = 0; $i < $stagione['voto']; $i++) {
-		$stagione['stelle'] .= '<i class="fa fa-star"></i>';
-	}
-	for ($i = 0; $i < $stelleVuote; $i++) {
-		$stagione['stelle'] .= '<i class="fa fa-star-o"></i>';
-	}
+$partiVoto = explode(".", $stagione['voto']);
+$stelleIntere = $partiVoto[0];
+$stelleDecimali = $partiVoto[1];
+for ($i = 0; $i < $stelleIntere; $i++) {
+	$stagione['stelle'] .= '<i class="fa fa-star"></i>';
+}
+if ($stelleDecimali >= 5) {
+	$stagione['stelle'] .= '<i class="fa fa-star-half-o"></i>';
+	$stelleIntere++;
+}
+$stelleRimanenti = 5 - $stelleIntere;
+for ($i = 0; $i < $stelleRimanenti; $i++) {
+	$stagione['stelle'] .= '<i class="fa fa-star-o"></i>';
 }
 $stagione['statoLabel'] = '<span class="label label-default pull-right">ND</span>';
 if ($episodiVisti == 0) {
@@ -536,7 +538,7 @@ if ($hasPre | $hasNext) {
 					            <select class="form-control" id="formVotoE">
 					            	<option value="0">Scegli...</option>
 					            	<?php
-					            	for ($i = 1; $i <= 5; $i++) {
+					            	for ($i = 0.5; $i <= 5; $i += 0.5) {
 					            		echo '<option value="'.$i.'">'.$i.'</option>';
 					            	}
 					            	?>

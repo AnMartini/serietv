@@ -103,7 +103,7 @@ $stats['stagioni'] = $sql->rowCount();
 					<h3>Info</h3>
 					<p>Ciao!<br />
 					Su questo sito sono raccolte informazioni varie sulla mia visione di serie tv. Diciamo che cos&igrave; ho un resoconto di cosa ho visto, quando l'ho visto e come l'ho visto, ma anche dove devo andare per poterlo rivedere!<br />
-					Inoltre, ovviamente, realizzare questo sito &egrave; stato un divertente esercizio nonch&eacute; un'ottima perdita di tempo! =)</p>
+					Inoltre, ovviamente, realizzare questo sito &egrave; stato un divertente esercizio nonch&eacute; un'ottima perdita di tempo! <i class="fa fa-smile-o"></i></p>
 					<dl class="dl-horizontal dl-serietv">
 						<dt>Serie</dt>
 						<dd><span class="badge"><?php echo $stats['serie']; ?></span></dd>
