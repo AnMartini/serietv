@@ -32,7 +32,7 @@ $sql->execute();
 $serie['stagioni'] = $sql->rowCount();
 $leStagioni = $sql->fetchAll();
 foreach ($leStagioni as $sNum => $laStagione) {
-	$sql = $db->prepare("SELECT * FROM episodi WHERE stagione = '".$laStagione['id']."' ORDER BY numero ASC");
+	$sql = $db->prepare("SELECT * FROM episodi WHERE stagione = '".$laStagione['id']."' ORDER BY numero * 1 ASC, numero ASC");
 	$sql->execute();
 	$laStagione['episodi'] = $sql->rowCount();
 	$serie['episodi'] += $laStagione['episodi'];
