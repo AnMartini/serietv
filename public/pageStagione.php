@@ -70,7 +70,11 @@ foreach ($gliEpisodi as $num => $lEpisodio) {
 		$stagione['nextENumero'] = $lEpisodio['numero']+1;
 	}
 }
-$stagione['percentuale'] = round(($episodiVisti / $stagione['episodi']) * 100);
+if ($stagione['episodi'] != 0) {
+	$stagione['percentuale'] = round(($episodiVisti / $stagione['episodi']) * 100);
+} else {
+	$stagione['percentuale'] = 0;
+}
 $video = array_unique($video, SORT_REGULAR);
 $audio = array_unique($audio, SORT_REGULAR);
 $sottotitoli = array_unique($sottotitoli, SORT_REGULAR);
