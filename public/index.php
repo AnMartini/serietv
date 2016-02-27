@@ -5,13 +5,26 @@ $sql = $db->prepare("SELECT * FROM episodi");
 $sql->execute();
 $stats['episodi'] = $sql->rowCount();
 $episodi = $sql->fetchAll();
+
+$sql = $db->prepare("SELECT id FROM serie WHERE abbandonata");
+$sql->execute();
+$idSerieAbbandonate = $sql->fetchAll();
+
 $stats['episodiVisti'] = 0;
+$stats['episodiVistiConAbbandonati'] = 0;
 foreach ($episodi as $num => $episodio) {
 	if ($episodio['visto']) {
 		$stats['episodiVisti']++;
 	}
+	if ($episodio['visto'] || in_array($episodio['serie'], $idSerieAbbandonate)) {
+		$stats['episodiVistiConAbbandonati']++;
+	}
 }
+
 $stats['percentuale'] = round(($stats['episodiVisti'] / $stats['episodi']) * 100);
+$stats['percentualeConAbbandonati'] = round(($stats['episodiVistiConAbbandonati'] / $stats['episodi']) * 100);
+$stats['percentualeAbbandonati'] = $stats['percentualeConAbbandonati'] - $stats['percentuale'];
+
 $sql = $db->prepare("SELECT * FROM serie");
 $sql->execute();
 $stats['serie'] = $sql->rowCount();
@@ -96,6 +109,9 @@ $stats['stagioni'] = $sql->rowCount();
 					<div class="progress">
 					  <div class="progress-bar progress-bar-serietv" role="progressbar" aria-valuenow="<?php echo $stats['percentuale']; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $stats['percentuale']; ?>%;">
 					  <?php echo ($stats['percentuale'] != 0 ? $stats['percentuale'].'%' : ''); ?>
+					  </div>
+					  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?php echo $stats['percentualeAbbandonati']; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $stats['percentualeAbbandonati']; ?>%;">
+					  <?php echo ($stats['percentualeAbbandonati'] != 0 ? $stats['percentualeAbbandonati'].'%' : ''); ?>
 					  </div>
 					</div>
 				</div>
