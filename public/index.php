@@ -107,7 +107,7 @@ $stats['stagioni'] = $sql->rowCount();
 					<img src="/img/logo.jpg" alt="Logo del sito" class="img-responsive img-thumbnail" />
 					<hr>
 					<div class="progress">
-					  <div class="progress-bar progress-bar-serietv" role="progressbar" aria-valuenow="<?php echo $stats['percentuale']; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $stats['percentuale']; ?>%;">
+					  <div class="progress-bar progress-bar-serietv" role="progressbar" aria-valuenow="<?php echo $stats['percentuale']; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $stats['percentuale']; ?>%; padding-left: <?php echo $stats['percentualeAbbandonati']; ?>%">
 					  <?php echo ($stats['percentualeConAbbandonati'] != 0 ? $stats['percentualeConAbbandonati'].'%' : ''); ?>
 					  </div>
 					  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?php echo $stats['percentualeAbbandonati']; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $stats['percentualeAbbandonati']; ?>%;">
