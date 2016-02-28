@@ -11,18 +11,17 @@ $sql->execute();
 $idSerieAbbandonate = $sql->fetchAll()[0];
 
 $stats['episodiVisti'] = 0;
-$stats['episodiVistiConAbbandonati'] = 0;
+$stats['episodiAbbandonati'] = 0;
 foreach ($episodi as $num => $episodio) {
 	if ($episodio['visto']) {
 		$stats['episodiVisti']++;
-	}
-	if ($episodio['visto'] || in_array($episodio['serie'], $idSerieAbbandonate)) {
-		$stats['episodiVistiConAbbandonati']++;
+	} elseif (in_array($episodio['serie'], $idSerieAbbandonate)) {
+		$stats['episodiAbbandonati']++;
 	}
 }
 
 $stats['percentuale'] = round(($stats['episodiVisti'] / $stats['episodi']) * 100);
-$stats['percentualeConAbbandonati'] = round(($stats['episodiVistiConAbbandonati'] / $stats['episodi']) * 100);
+$stats['percentualeConAbbandonati'] = round((($stats['episodiVisti'] + $stats['episodiAbbandonati']) / $stats['episodi']) * 100);
 $stats['percentualeAbbandonati'] = $stats['percentualeConAbbandonati'] - $stats['percentuale'];
 
 $sql = $db->prepare("SELECT * FROM serie");
