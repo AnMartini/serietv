@@ -28,6 +28,8 @@ $stats['percentuale'] = round(($stats['episodiVisti'] / $stats['episodi']) * 100
 $stats['percentualeConAbbandonati'] = round((($stats['episodiVisti'] + $stats['episodiAbbandonati']) / $stats['episodi']) * 100);
 $stats['percentualeAbbandonati'] = $stats['percentualeConAbbandonati'] - $stats['percentuale'];
 
+$stats['episodiDaVedere'] = $stats['episodi'] - $stats['episodiVisti'] - $stats['episodiAbbandonati'];
+
 $sql = $db->prepare("SELECT * FROM serie");
 $sql->execute();
 $stats['serie'] = $sql->rowCount();
@@ -131,6 +133,10 @@ $stats['stagioni'] = $sql->rowCount();
 						<dd><span class="badge"><?php echo $stats['episodi']; ?></span></dd>
 						<dt>Visti</dt>
 						<dd><span class="badge"><?php echo $stats['episodiVisti']; ?></span></dd>
+						<dt>Abbandonati</dt>
+						<dd><span class="badge"><?php echo $stats['episodiAbbandonati']; ?></span></dd>
+						<dt>Da vedere</dt>
+						<dd><span class="badge"><?php echo $stats['episodiDaVedere']; ?></span></dd>
 					</dl>
 					<h3>Serie</h3>
 					<ul class="list-unstyled">
