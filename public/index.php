@@ -8,7 +8,11 @@ $episodi = $sql->fetchAll();
 
 $sql = $db->prepare("SELECT id FROM serie WHERE abbandonata");
 $sql->execute();
-$idSerieAbbandonate = $sql->fetchAll()[0];
+$serieAbbandonate = $sql->fetchAll();
+$idSerieAbbandonate = array();
+foreach ($serieAbbandonate as $val) {
+	$idSerieAbbandonate[] = $val['id'];
+}
 
 $stats['episodiVisti'] = 0;
 $stats['episodiAbbandonati'] = 0;
