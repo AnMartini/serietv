@@ -282,7 +282,7 @@ if ($hasPre | $hasNext) {
 					        <form id="formDati">
 					          <div class="form-group">
 					            <label for="formNumero">Numero</label>
-					            <input type="number" class="form-control" id="formNumero" placeholder="Numero" value="<?php echo $episodio['numero']; ?>">
+					            <input type="text" class="form-control" id="formNumero" placeholder="Numero" value="<?php echo $episodio['numero']; ?>">
 					          </div>
 					          <div class="form-group">
 					            <label for="formTitolo">Titolo</label>

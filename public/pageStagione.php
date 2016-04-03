@@ -477,7 +477,7 @@ if ($hasPre | $hasNext) {
 					        <form id="formDatiE">
 					          <div class="form-group">
 					            <label for="formNumeroE">Numero</label>
-					            <input type="number" class="form-control" id="formNumeroE" placeholder="Numero" value="<?php echo $stagione['nextENumero']; ?>">
+					            <input type="text" class="form-control" id="formNumeroE" placeholder="Numero" value="<?php echo $stagione['nextENumero']; ?>">
 					          </div>
 					          <div class="form-group">
 					            <label for="formTitoloE">Titolo</label>
