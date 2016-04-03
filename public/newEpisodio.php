@@ -38,7 +38,7 @@ if ($check != 1) {
 	exit;
 }
 
-if ($_POST['numero'] == '' || !is_numeric($_POST['numero'])) {
+if ($_POST['numero'] == '') {
 	echo '{ "successo" : false, "errore" : "Devi inserire un numero." }';
 	exit;
 }

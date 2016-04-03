@@ -27,6 +27,7 @@ if ($sql->rowCount() != 1) {
 	exit;
 }
 $episodio = $sql->fetch();
+$episodioArray = $episodio;
 if (!$episodio['visto']) {
 	if ($serie['abbandonata']) {
 		$episodio['visione'] = '<span class="label label-danger">Non visto</span>';
@@ -96,22 +97,26 @@ if (!file_exists($episodio['imgPath'])) {
     $episodio['hasImg'] = false;
 }
 
-$hasNext = false;
-$sql = $db->prepare("SELECT * FROM episodi WHERE stagione = '".$stagione['id']."' AND numero = '".($episodio['numero']+1)."'");
+$sql = $db->prepare("SELECT * FROM episodi WHERE stagione = '".$stagione['id']."' ORDER BY numero * 1 ASC, numero ASC");
 $sql->execute();
-if ($sql->rowCount() == 1) {
+$gliEpisodi = $sql->fetchAll();
+
+$inArrayKey = array_search($episodioArray, $gliEpisodi);
+$inArrayKeyNext = $inArrayKey + 1;
+$inArrayKeyPre = $inArrayKey - 1;
+
+$hasNext = false;
+if (array_key_exists($inArrayKeyNext, $gliEpisodi)) {
 	$hasNext = true;
-	$next = $sql->fetch();
+	$next = $gliEpisodi[$inArrayKeyNext];
 	$next['url'] = '/s/'.$serie['slug'].'/s'.$stagione['numero'].'/e'.$next['numero'];
 	$next['show'] = 'S'.$stagione['numero'].' E'.$next['numero'];
 }
 
 $hasPre = false;
-$sql = $db->prepare("SELECT * FROM episodi WHERE stagione = '".$stagione['id']."' AND numero = '".($episodio['numero']-1)."'");
-$sql->execute();
-if ($sql->rowCount() == 1) {
+if (array_key_exists($inArrayKeyPre, $gliEpisodi)) {
 	$hasPre = true;
-	$pre = $sql->fetch();
+	$pre = $gliEpisodi[$inArrayKeyPre];
 	$pre['url'] = '/s/'.$serie['slug'].'/s'.$stagione['numero'].'/e'.$pre['numero'];
 	$pre['show'] = 'S'.$stagione['numero'].' E'.$pre['numero'];
 }
@@ -211,9 +216,6 @@ if ($hasPre | $hasNext) {
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodi <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <?php
-		            $sql = $db->prepare("SELECT * FROM episodi WHERE stagione = '".$stagione['id']."' ORDER BY numero * 1 ASC, numero ASC");
-		            $sql->execute();
-		            $gliEpisodi = $sql->fetchAll();
 		            foreach ($gliEpisodi as $lEpisodio) {
 		            	echo '<li'.($lEpisodio['id'] == $episodio['id'] ? ' class="active"' : '').'><a href="/s/'.$serie['slug'].'/s'.$stagione['numero'].'/e'.$lEpisodio['numero'].'">#'.$lEpisodio['numero'].' '.$lEpisodio['titolo'].'</a></li>';
 		            }
