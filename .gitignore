@@ -2,4 +2,5 @@
 .htaccess
 public/old/
 env.php
+login.php
 /public/pwdserietv.php
