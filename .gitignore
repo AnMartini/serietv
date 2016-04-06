@@ -1,6 +1,6 @@
 .DS_Store
 .htaccess
 .htpasswd
-public/old/
 env.php
-public/login.php
+public/old/
+public/login/index.php
