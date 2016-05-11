@@ -145,16 +145,16 @@ $valOre .= ' ]';
 			<hr />
 			<div class="row">
 				<h2>Episodi visti per anno</h2>
-				<canvas id="chartAnni" width="100" height="20"></canvas>
+				<canvas id="chartAnni" width="100" height="30"></canvas>
 				<hr />
 				<h2>Episodi visti per mese</h2>
-				<canvas id="chartMesi" width="100" height="20"></canvas>
+				<canvas id="chartMesi" width="100" height="30"></canvas>
 				<hr />
 				<h2>Episodi visti per giorno della settimana</h2>
-				<canvas id="chartGiorni" width="100" height="20"></canvas>
+				<canvas id="chartGiorni" width="100" height="30"></canvas>
 				<hr />
 				<h2>Episodi visti per ora</h2>
-				<canvas id="chartOre" width="100" height="20"></canvas>
+				<canvas id="chartOre" width="100" height="30"></canvas>
 			</div>
 		</div>
 		<!-- Script -->
