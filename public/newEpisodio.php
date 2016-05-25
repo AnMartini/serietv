@@ -59,6 +59,12 @@ if ($_POST['titolo'] == '') {
 }
 $titolo = $db->quote($_POST['titolo']);
 
+if ($_POST['durata'] == '') {
+	$durata = 'NULL';
+} else {
+	$durata = $db->quote($_POST['durata']);
+}
+
 if ($_POST['visto'] == 'true') {
 	$visto = 1;
 	if ($_POST['data'] == '') {
@@ -101,7 +107,7 @@ if ($_POST['voto'] == '' || $_POST['voto'] == '0') {
 	$voto = $db->quote($_POST['voto']);
 }
 
-$sql = $db->prepare("INSERT INTO episodi (serie, stagione, numero, titolo, video, audio, sottotitoli, storage, voto, visto, data) VALUES ($serie, $stagione, $numero, $titolo, $video, $audio, $sottotitoli, $storage, $voto, $visto, $data)");
+$sql = $db->prepare("INSERT INTO episodi (serie, stagione, numero, titolo, durata, video, audio, sottotitoli, storage, voto, visto, data) VALUES ($serie, $stagione, $numero, $titolo, $durata, $video, $audio, $sottotitoli, $storage, $voto, $visto, $data)");
 $sql->execute();
 $id = $db->lastInsertId();
 

@@ -51,6 +51,12 @@ if ($check != 1) {
 	exit;
 }
 
+if ($_POST['durata'] == '') {
+	$durata = 'NULL';
+} else {
+	$durata = $db->quote($_POST['durata']);
+}
+
 if ($_POST['visto'] == 'true') {
 	$visto = 1;
 	if ($_POST['data'] == '') {
@@ -93,7 +99,7 @@ if ($_POST['voto'] == '' || $_POST['voto'] == '0') {
 	$voto = $db->quote($_POST['voto']);
 }
 
-$sql = $db->prepare("UPDATE episodi SET numero = $numero, titolo = $titolo, stagione = $stagione, video = $video, audio = $audio, sottotitoli = $sottotitoli, storage = $storage, voto = $voto, visto = $visto, data = $data WHERE id = $id");
+$sql = $db->prepare("UPDATE episodi SET numero = $numero, titolo = $titolo, stagione = $stagione, durata = $durata, video = $video, audio = $audio, sottotitoli = $sottotitoli, storage = $storage, voto = $voto, visto = $visto, data = $data WHERE id = $id");
 $sql->execute();
 
 echo '{ "successo" : true, "messaggio" : "Fatto!" }';

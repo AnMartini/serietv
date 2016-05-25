@@ -51,13 +51,19 @@ if ($_POST['status'] == '') {
 	$status = $db->quote($_POST['status']);
 }
 
+if ($_POST['durata'] == '') {
+	$durata = 'NULL';
+} else {
+	$durata = $db->quote($_POST['durata']);
+}
+
 if ($_POST['abbandonata'] == 'true') {
 	$abbandonata = 1;
 } else {
 	$abbandonata = 0;
 }
 
-$sql = $db->prepare("UPDATE serie SET nome = $nome, slug = $slug, status = $status, abbandonata = $abbandonata WHERE id = $id");
+$sql = $db->prepare("UPDATE serie SET nome = $nome, slug = $slug, status = $status, durata = $durata, abbandonata = $abbandonata WHERE id = $id");
 $sql->execute();
 
 echo '{ "successo" : true, "messaggio" : "Fatto!" }';

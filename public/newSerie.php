@@ -33,13 +33,19 @@ if ($_POST['status'] == '') {
 	$status = $db->quote($_POST['status']);
 }
 
+if ($_POST['durata'] == '') {
+	$durata = 'NULL';
+} else {
+	$durata = $db->quote($_POST['durata']);
+}
+
 if ($_POST['abbandonata'] == 'true') {
 	$abbandonata = 1;
 } else {
 	$abbandonata = 0;
 }
 
-$sql = $db->prepare("INSERT INTO serie (slug, nome, status, abbandonata) VALUES ($slug, $nome, $status, $abbandonata)");
+$sql = $db->prepare("INSERT INTO serie (slug, nome, status, durata, abbandonata) VALUES ($slug, $nome, $status, $durata, $abbandonata)");
 $sql->execute();
 $id = $db->lastInsertId();
 

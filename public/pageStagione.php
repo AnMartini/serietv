@@ -485,6 +485,10 @@ if ($hasPre | $hasNext) {
 					            <input type="text" class="form-control" id="formTitoloE" placeholder="Titolo">
 					          </div>
 					          <div class="form-group">
+					            <label for="formDurataE">Durata</label>
+					            <input type="number" class="form-control" id="formDurataE" placeholder="Durata" value="<?php echo $serie['durata']; ?>">
+					          </div>
+					          <div class="form-group">
 					            <label for="formVideoE">Video</label>
 					            <select class="form-control" id="formVideoE">
 					            	<option value="0">Scegli...</option>
@@ -748,6 +752,7 @@ if ($hasPre | $hasNext) {
 				$("#formResultE").html('');
 				var numero = encodeURIComponent($("#formNumeroE").val());
 				var titolo = encodeURIComponent($("#formTitoloE").val());
+				var durata = encodeURIComponent($("#formDurataE").val());
 				var video = $("#formVideoE").val();
 				var audio = $("#formAudioE").val();
 				var sottotitoli = $("#formSottotitoliE").val();
@@ -758,7 +763,7 @@ if ($hasPre | $hasNext) {
 				$.ajax({
 				  type: "POST",
 				  url: "/newEpisodio.php",
-				  data: "serie=<?php echo $stagione['serie']; ?>&stagione=<?php echo $stagione['id']; ?>&numero="+numero+"&titolo="+titolo+"&video="+video+"&audio="+audio+"&sottotitoli="+sottotitoli+"&storage="+storage+"&voto="+voto+"&visto="+visto+"&data="+data,
+				  data: "serie=<?php echo $stagione['serie']; ?>&stagione=<?php echo $stagione['id']; ?>&numero="+numero+"&titolo="+titolo+"&durata="+durata+"&video="+video+"&audio="+audio+"&sottotitoli="+sottotitoli+"&storage="+storage+"&voto="+voto+"&visto="+visto+"&data="+data,
 				  dataType: "html",
 				  success: function(msg)
 				  {

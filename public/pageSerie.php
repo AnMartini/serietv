@@ -398,6 +398,10 @@ if ($sql->rowCount() == 1) {
 					            	?>
 					            </select>
 					          </div>
+					          <div class="form-group">
+					            <label for="formDurata">Durata</label>
+					            <input type="number" class="form-control" id="formDurata" placeholder="Durata" value="<?php echo $serie['durata']; ?>">
+					          </div>
 					          <div class="checkbox">
 					            <label>
 					              <input type="checkbox" id="formAbbandonata"<?php echo ($serie['abbandonata'] ? ' checked' : ''); ?>> Abbandonata
@@ -508,11 +512,12 @@ if ($sql->rowCount() == 1) {
 				var nome = encodeURIComponent($("#formNome").val());
 				var slug = encodeURIComponent($("#formSlug").val());
 				var status = $("#formStatus").val();
+				var durata = encodeURIComponent($("#formDurata").val());
 				var abbandonata = ( $("#formAbbandonata").prop("checked") ? 'true' : 'false' );
 				$.ajax({
 				  type: "POST",
 				  url: "/modSerie.php",
-				  data: "id=<?php echo $serie['id']; ?>&nome="+nome+"&slug="+slug+"&status="+status+"&abbandonata="+abbandonata,
+				  data: "id=<?php echo $serie['id']; ?>&nome="+nome+"&slug="+slug+"&status="+status+"&durata="+durata+"&abbandonata="+abbandonata,
 				  dataType: "html",
 				  success: function(msg)
 				  {

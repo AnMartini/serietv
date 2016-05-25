@@ -16,13 +16,22 @@ foreach ($serieAbbandonate as $val) {
 
 $stats['episodiVisti'] = 0;
 $stats['episodiAbbandonati'] = 0;
+$stats['minutiVisti'] = 0;
+$stats['minutiTotali'] = 0;
 foreach ($episodi as $num => $episodio) {
 	if ($episodio['visto']) {
 		$stats['episodiVisti']++;
+		$stats['minutiVisti'] += $episodio['durata'];
 	} elseif (in_array($episodio['serie'], $idSerieAbbandonate)) {
 		$stats['episodiAbbandonati']++;
 	}
+	$stats['minutiTotali'] += $episodio['durata'];
 }
+$stats['minutiDaVedere'] = $stats['minutiTotali'] - $stats['minutiVisti'];
+
+$stats['oreTotali'] = round($stats['minutiTotali'] / 60);
+$stats['oreViste'] = round($stats['minutiVisti'] / 60);
+$stats['oreDaVedere'] = round($stats['minutiDaVedere'] / 60);
 
 $stats['percentuale'] = round(($stats['episodiVisti'] / $stats['episodi']) * 100);
 $stats['percentualeConAbbandonati'] = round((($stats['episodiVisti'] + $stats['episodiAbbandonati']) / $stats['episodi']) * 100);
@@ -131,13 +140,13 @@ $stats['stagioni'] = $sql->rowCount();
 						<dt>Stagioni</dt>
 						<dd><span class="badge"><?php echo $stats['stagioni']; ?></span></dd>
 						<dt>Episodi</dt>
-						<dd><span class="badge"><?php echo $stats['episodi']; ?></span></dd>
+						<dd><span class="badge"><?php echo $stats['episodi']; ?></span> | <?php echo $stats['oreTotali']; ?> ore</dd>
 						<dt>Visti</dt>
-						<dd><span class="badge"><?php echo $stats['episodiVisti']; ?></span></dd>
+						<dd><span class="badge"><?php echo $stats['episodiVisti']; ?></span> | <?php echo $stats['oreViste']; ?> ore</dd>
 						<dt>Abbandonati</dt>
 						<dd><span class="badge"><?php echo $stats['episodiAbbandonati']; ?></span></dd>
 						<dt>Da vedere</dt>
-						<dd><span class="badge"><?php echo $stats['episodiDaVedere']; ?></span></dd>
+						<dd><span class="badge"><?php echo $stats['episodiDaVedere']; ?></span> | <?php echo $stats['oreDaVedere']; ?> ore</dd>
 					</dl>
 					<h3>Serie</h3>
 					<ul class="list-unstyled">
@@ -217,6 +226,10 @@ $stats['stagioni'] = $sql->rowCount();
 					              	?>
 					              </select>
 					            </div>
+					            <div class="form-group">
+					            <label for="formDurata">Durata</label>
+					            <input type="number" class="form-control" id="formDurata" placeholder="Durata">
+					          </div>
 					            <div class="checkbox">
 					              <label>
 					                <input type="checkbox" id="formAbbandonata"> Abbandonata
@@ -262,11 +275,12 @@ $stats['stagioni'] = $sql->rowCount();
 				var slug = encodeURIComponent($("#formSlug").val());
 				var nome = encodeURIComponent($("#formNome").val());
 				var status = $("#formStatus").val();
+				var durata = encodeURIComponent($("#formDurata").val());
 				var abbandonata = ( $("#formAbbandonata").prop("checked") ? 'true' : 'false' );
 				$.ajax({
 				  type: "POST",
 				  url: "/newSerie.php",
-				  data: "slug="+slug+"&nome="+nome+"&status="+status+"&abbandonata="+abbandonata,
+				  data: "slug="+slug+"&nome="+nome+"&status="+status+"&durata="+durata+"&abbandonata="+abbandonata,
 				  dataType: "html",
 				  success: function(msg)
 				  {

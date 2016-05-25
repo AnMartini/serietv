@@ -248,6 +248,8 @@ if ($hasPre | $hasNext) {
 					<dl class="dl-horizontal dl-serietv">
 						<dt>Titolo</dt>
 						<dd><?php echo $episodio['titolo']; ?></dd>
+						<dt>Durata</dt>
+						<dd><?php echo $episodio['durata']; ?> minuti</dd>
 						<dt>Video</dt>
 						<dd><?php echo $episodio['sVideo']; ?></dd>
 						<dt>Audio</dt>
@@ -305,6 +307,10 @@ if ($hasPre | $hasNext) {
 					            	}
 					            	?>
 					            </select>
+					          </div>
+					          <div class="form-group">
+					            <label for="formDurata">Durata</label>
+					            <input type="number" class="form-control" id="formDurata" placeholder="Durata" value="<?php echo $episodio['durata']; ?>">
 					          </div>
 					          <div class="form-group">
 					            <label for="formVideo">Video</label>
@@ -460,6 +466,7 @@ if ($hasPre | $hasNext) {
 				var numero = encodeURIComponent($("#formNumero").val());
 				var titolo = encodeURIComponent($("#formTitolo").val());
 				var stagione = $("#formStagione").val();
+				var durata = encodeURIComponent($("#formDurata").val());
 				var video = $("#formVideo").val();
 				var audio = $("#formAudio").val();
 				var sottotitoli = $("#formSottotitoli").val();
@@ -470,7 +477,7 @@ if ($hasPre | $hasNext) {
 				$.ajax({
 				  type: "POST",
 				  url: "/modEpisodio.php",
-				  data: "id=<?php echo $episodio['id']; ?>&numero="+numero+"&titolo="+titolo+"&stagione="+stagione+"&video="+video+"&audio="+audio+"&sottotitoli="+sottotitoli+"&storage="+storage+"&voto="+voto+"&visto="+visto+"&data="+data,
+				  data: "id=<?php echo $episodio['id']; ?>&numero="+numero+"&titolo="+titolo+"&stagione="+stagione+"&durata="+durata+"&video="+video+"&audio="+audio+"&sottotitoli="+sottotitoli+"&storage="+storage+"&voto="+voto+"&visto="+visto+"&data="+data,
 				  dataType: "html",
 				  success: function(msg)
 				  {
