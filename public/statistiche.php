@@ -2,13 +2,26 @@
 include_once("pdo.php");
 error_reporting(E_ALL);
 
-$anni = [];
-for ($a = 2014; $a <= date('Y'); $a++) {
-	$anni[$a] = 0;
+function colora($numero) {
+	$red = ($numero * 95) % 255;
+	$green = ($numero * 23) % 255;
+	$blue = ($numero * 130) % 255;
+	$color = "rgb($red, $green, $blue)";
+	return $color;
 }
+
 $mesi = [ 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0, 8 => 0, 9 => 0, 10 => 0, 11 => 0, 12 => 0 ];
 $giorni = [ 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0 ];
 $ore = [ 0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0, 8 => 0, 9 => 0, 10 => 0, 11 => 0, 12 => 0, 13 => 0, 14 => 0, 15 => 0, 16 => 0, 17 => 0, 18 => 0, 19 => 0, 20 => 0, 21 => 0, 22 => 0, 23 => 0 ];
+$anni = [];
+$dettaglioAnni = [];
+for ($a = 2014; $a <= date('Y'); $a++) {
+	$anni[$a] = 0;
+	$dettaglioAnni[$a]['mesi'] = [ 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0, 8 => 0, 9 => 0, 10 => 0, 11 => 0, 12 => 0 ];
+	$dettaglioAnni[$a]['giorni'] = [ 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0 ];
+	$dettaglioAnni[$a]['ore'] = [ 0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0, 8 => 0, 9 => 0, 10 => 0, 11 => 0, 12 => 0, 13 => 0, 14 => 0, 15 => 0, 16 => 0, 17 => 0, 18 => 0, 19 => 0, 20 => 0, 21 => 0, 22 => 0, 23 => 0 ];
+	$dettaglioAnni[$a]['colore'] = colora($a);
+}
 
 $sql = $db->prepare("SELECT * FROM episodi WHERE visto");
 $sql->execute();
@@ -21,6 +34,10 @@ foreach ($episodi as $episodio) {
 		$mesi[date('n', $episodio['data'])]++;
 		$giorni[date('N', $episodio['data'])]++;
 		$ore[date('G', $episodio['data'])]++;
+
+		$dettaglioAnni[date('Y', $episodio['data'])]['mesi'][date('n', $episodio['data'])]++;
+		$dettaglioAnni[date('Y', $episodio['data'])]['giorni'][date('N', $episodio['data'])]++;
+		$dettaglioAnni[date('Y', $episodio['data'])]['ore'][date('G', $episodio['data'])]++;
 	}
 }
 
@@ -71,6 +88,42 @@ foreach ($ore as $k => $v) {
 	}
 }
 $valOre .= ' ]';
+
+$dataAnni['mesi'] = '';
+$dataAnni['giorni'] = '';
+$dataAnni['ore'] = '';
+foreach ($dettaglioAnni as $k => $v) {
+	foreach($v['mesi'] as $kT => $vT) {
+		if ($kT == 1) {
+			$dettaglioAnni[$k]['val']['mesi'] = '[ '.$vT;
+		} else {
+			$dettaglioAnni[$k]['val']['mesi'] .= ', '.$vT;
+		}
+	}
+	$dettaglioAnni[$k]['val']['mesi'] .= ' ]';
+
+	foreach($v['giorni'] as $kT => $vT) {
+		if ($kT == 1) {
+			$dettaglioAnni[$k]['val']['giorni'] = '[ '.$vT;
+		} else {
+			$dettaglioAnni[$k]['val']['giorni'] .= ', '.$vT;
+		}
+	}
+	$dettaglioAnni[$k]['val']['giorni'] .= ' ]';
+
+	foreach($v['ore'] as $kT => $vT) {
+		if ($kT == 0) {
+			$dettaglioAnni[$k]['val']['ore'] = '[ '.$vT;
+		} else {
+			$dettaglioAnni[$k]['val']['ore'] .= ', '.$vT;
+		}
+	}
+	$dettaglioAnni[$k]['val']['ore'] .= ' ]';
+
+	$dataAnni['mesi'] .= ', { label: "'.$k.'", backgroundColor: "'.$v['colore'].'", data: '.$dettaglioAnni[$k]['val']['mesi'].' }';
+	$dataAnni['giorni'] .= ', { label: "'.$k.'", backgroundColor: "'.$v['colore'].'", data: '.$dettaglioAnni[$k]['val']['giorni'].' }';
+	$dataAnni['ore'] .= ', { label: "'.$k.'", backgroundColor: "'.$v['colore'].'", data: '.$dettaglioAnni[$k]['val']['ore'].' }';
+}
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -172,7 +225,7 @@ $valOre .= ' ]';
 			    data: {
 			        labels: <?= $labelAnni ?>,
 			        datasets: [{
-			            label: "Episodi",
+			            label: "Dall'inizio",
 			            backgroundColor: "#101010",
 			            data: <?= $valAnni ?>
 			        }]
@@ -193,10 +246,10 @@ $valOre .= ' ]';
 			    data: {
 			        labels: <?= $labelMesi ?>,
 			        datasets: [{
-			            label: "Episodi",
+			            label: "Dall'inizio",
 			            backgroundColor: "#101010",
 			            data: <?= $valMesi ?>
-			        }]
+			        }<?= $dataAnni['mesi'] ?>]
 			    },
 			    options: {
 			        scales: {
@@ -214,10 +267,10 @@ $valOre .= ' ]';
 			    data: {
 			        labels: <?= $labelGiorni ?>,
 			        datasets: [{
-			            label: "Episodi",
+			            label: "Dall'inizio",
 			            backgroundColor: "#101010",
 			            data: <?= $valGiorni ?>
-			        }]
+			        }<?= $dataAnni['giorni'] ?>]
 			    },
 			    options: {
 			        scales: {
@@ -238,7 +291,7 @@ $valOre .= ' ]';
 			            label: "Episodi",
 			            backgroundColor: "#101010",
 			            data: <?= $valOre ?>
-			        }]
+			        }<?= $dataAnni['ore'] ?>]
 			    },
 			    options: {
 			        scales: {
