@@ -288,7 +288,7 @@ foreach ($dettaglioAnni as $k => $v) {
 			    data: {
 			        labels: <?= $labelOre ?>,
 			        datasets: [{
-			            label: "Episodi",
+			            label: "Dall'inizio",
 			            backgroundColor: "#101010",
 			            data: <?= $valOre ?>
 			        }<?= $dataAnni['ore'] ?>]
