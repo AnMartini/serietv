@@ -90,8 +90,12 @@ $stelleDecimali = $partiVoto[1];
 for ($i = 0; $i < $stelleIntere; $i++) {
 	$serie['stelle'] .= '<i class="fa fa-star"></i>';
 }
-if ($stelleDecimali >= 5) {
-	$serie['stelle'] .= '<i class="fa fa-star-half-o"></i>';
+if ($stelleDecimali >= 3) {
+	if ($stelleDecimali >= 8) {
+		$serie['stelle'] .= '<i class="fa fa-star"></i>';
+	} else {
+		$serie['stelle'] .= '<i class="fa fa-star-half-o"></i>';
+	}
 	$stelleIntere++;
 }
 $stelleRimanenti = 5 - $stelleIntere;
