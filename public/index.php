@@ -17,6 +17,7 @@ foreach ($serieAbbandonate as $val) {
 $stats['episodiVisti'] = 0;
 $stats['episodiAbbandonati'] = 0;
 $stats['minutiVisti'] = 0;
+$stats['minutiAbbandonati'] = 0;
 $stats['minutiTotali'] = 0;
 foreach ($episodi as $num => $episodio) {
 	if ($episodio['visto']) {
@@ -24,14 +25,16 @@ foreach ($episodi as $num => $episodio) {
 		$stats['minutiVisti'] += $episodio['durata'];
 	} elseif (in_array($episodio['serie'], $idSerieAbbandonate)) {
 		$stats['episodiAbbandonati']++;
+		$stats['minutiAbbandonati'] += $episodio['durata'];
 	}
 	$stats['minutiTotali'] += $episodio['durata'];
 }
-$stats['minutiDaVedere'] = $stats['minutiTotali'] - $stats['minutiVisti'];
+$stats['minutiDaVedere'] = $stats['minutiTotali'] - $stats['minutiVisti'] - $stats['minutiAbbandonati'];
 
 $stats['oreTotali'] = round($stats['minutiTotali'] / 60);
 $stats['oreViste'] = round($stats['minutiVisti'] / 60);
 $stats['oreDaVedere'] = round($stats['minutiDaVedere'] / 60);
+$stats['oreAbbandonate'] = round($stats['minutiAbbandonati'] / 60);
 
 $stats['percentuale'] = round(($stats['episodiVisti'] / $stats['episodi']) * 100);
 $stats['percentualeConAbbandonati'] = round((($stats['episodiVisti'] + $stats['episodiAbbandonati']) / $stats['episodi']) * 100);
@@ -144,7 +147,7 @@ $stats['stagioni'] = $sql->rowCount();
 						<dt>Visti</dt>
 						<dd><span class="badge"><?php echo $stats['episodiVisti']; ?></span> | <?php echo $stats['oreViste']; ?> ore</dd>
 						<dt>Abbandonati</dt>
-						<dd><span class="badge"><?php echo $stats['episodiAbbandonati']; ?></span></dd>
+						<dd><span class="badge"><?php echo $stats['episodiAbbandonati']; ?></span> | <?php echo $stats['oreAbbandonate']; ?> ore</dd>
 						<dt>Da vedere</dt>
 						<dd><span class="badge"><?php echo $stats['episodiDaVedere']; ?></span> | <?php echo $stats['oreDaVedere']; ?> ore</dd>
 					</dl>
